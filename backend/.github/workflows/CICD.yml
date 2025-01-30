@@ -1,0 +1,27 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - "feature/*"  # feature/로 시작하는 모든 브랜치에 대해
+  pull_request:
+    branches:
+      - "feature/*"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          base: develop
+          branch: feature/*
+          delete-branch: true
+          title: 'Automated Pull Request'
+          body: '자동으로 생성된 Pull Request입니다.'
