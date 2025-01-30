@@ -90,4 +90,13 @@ public class Project extends BaseTimeEntity {
 			analysis.setProject(this);
 		}
 	}
+
+	//엔티티 내에서 객체가 직접 상태 관리 -> 캡슐화와 객체지향적 설계
+	public void updateTitle(String title) {
+		this.title = title;
+	}
+
+	public void updateGenre(String genre) {
+		this.genre = genre;
+	}
 }
