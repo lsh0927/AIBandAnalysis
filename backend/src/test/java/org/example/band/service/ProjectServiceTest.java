@@ -85,7 +85,7 @@ class ProjectServiceTest {
 	@Test
 	@DisplayName("존재하지 않는 유저로 프로젝트 생성시 예외가 발생한다")
 	void createProject_UserNotFound() {
-		// given given: userRepository가 empty Optional을 반환하도록 설정 (유저가 없는 상황 가정)
+		// given: userRepository가 empty Optional을 반환하도록 설정 (유저가 없는 상황 가정)
 		ProjectCreateRequest request = new ProjectCreateRequest("title", "genre");
 		when(userRepository.findById(anyLong())).thenReturn(Optional.empty());
 
