@@ -1,6 +1,7 @@
 package org.example.band.service;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.example.band.dto.ProjectUpdateType.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -9,6 +10,8 @@ import java.util.Optional;
 import org.example.band.dto.ProjectCreateRequest;
 import org.example.band.dto.ProjectCreateResponse;
 import org.example.band.dto.ProjectResponse;
+import org.example.band.dto.ProjectUpdateRequest;
+import org.example.band.entity.AudioFile;
 import org.example.band.entity.Project;
 import org.example.band.entity.User;
 import org.example.band.enums.Provider;
@@ -106,5 +109,92 @@ class ProjectServiceTest {
 		// then
 		assertThat(response.title()).isEqualTo(project.getTitle());
 		assertThat(response.genre()).isEqualTo(project.getGenre());
+	}
+	//Update
+
+	@DisplayName("프로젝트를 기본수정한다")
+	@Test
+	void updateProject(){
+		//given: 수정 request 생성 및 모의(findById) 설정
+		ProjectUpdateRequest request= new ProjectUpdateRequest(BASIC_INFO, "title2","genre2",null);
+		when(projectRepository.findById(anyLong())).thenReturn(Optional.of(project));
+
+		// when: 서비스 메서드 호출
+		projectService.updateProject(1L,request);
+
+		// then: 변경된 프로젝트 상태와 저장 메서드 호출 검증
+		assertThat(project.getTitle()).isEqualTo("title2");
+		assertThat(project.getGenre()).isEqualTo("genre2");
+
+		//verify(projectRepository.save(project));
+		verify(projectRepository).save(project);
+
+
+	}
+
+	@DisplayName("존재하지 않는 프로젝트를 수정하려 하면 예외가 발생한다")
+	@Test
+	void updateProject_ProjectNotFound() {
+		// given: 수정 request 생성 및 모의(findById) 설정(프로젝트 없음)
+		ProjectUpdateRequest request = new ProjectUpdateRequest(BASIC_INFO, "New Title", "New Genre", null);
+		when(projectRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+		// when & then: 예외 발생 검증
+		assertThatThrownBy(() -> projectService.updateProject(1L, request))
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessage("프로젝트를 찾을 수 없습니다.");
+	}
+
+	@DisplayName("프로젝트의 레퍼런스 파일을 수정한다")
+	@Test
+	void updateProject_ReferenceFile() {
+		// given: 새로운 레퍼런스 파일 생성 및 request 설정
+		AudioFile newReferenceFile = AudioFile.builder()
+			.originalFileName("new_reference.mp3")
+			.fileUrl("http://example.com/new_reference.mp3")
+			.build();
+
+		ProjectUpdateRequest request = new ProjectUpdateRequest(REFERENCE_FILE, null, null, newReferenceFile);
+		when(projectRepository.findById(anyLong())).thenReturn(Optional.of(project));
+
+		// when: 레퍼런스 파일 업데이트 요청 실행
+		projectService.updateProject(1L, request);
+
+		// then: 프로젝트의 레퍼런스 파일이 업데이트 되었는지 확인하고 저장 검증
+		assertThat(project.getReferenceFile()).isEqualTo(newReferenceFile);
+		verify(projectRepository).save(project);
+	}
+
+	@DisplayName("프로젝트의 연주 파일을 수정한다")
+	@Test
+	void updateProject_PerformanceFile() {
+		// given: 새로운 연주 파일 생성 및 request 설정
+		AudioFile newPerformanceFile = AudioFile.builder()
+			.originalFileName("new_performance.mp3")
+			.fileUrl("http://example.com/new_performance.mp3")
+			.build();
+
+		ProjectUpdateRequest request = new ProjectUpdateRequest(PERFORMANCE_FILE, null, null, newPerformanceFile);
+		when(projectRepository.findById(anyLong())).thenReturn(Optional.of(project));
+
+		// when: 연주 파일 업데이트 요청 실행
+		projectService.updateProject(1L, request);
+
+		// then: 프로젝트의 연주 파일이 업데이트 되었는지 확인하고 저장 검증
+		assertThat(project.getPerformanceFile()).isEqualTo(newPerformanceFile);
+		verify(projectRepository).save(project);
+	}
+
+	@DisplayName("존재하는 프로젝트를 삭제한다")
+	@Test
+	void deleteProject_success() {
+		// given
+		when(projectRepository.findById(anyLong())).thenReturn(Optional.of(project));
+
+		// when
+		projectService.deleteProject(1L);
+
+		// then
+		verify(projectRepository).delete(project);
 	}
 }
