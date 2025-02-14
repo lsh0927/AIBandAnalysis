@@ -64,4 +64,9 @@ public class AudioFile extends BaseTimeEntity {
 		this.type = type;
 		this.status = FileStatus.UPLOADED;
 	}
+
+	// fileUrl 업데이트를 위한 도메인 메서드 추가
+	public void updateFileUrl(String fileUrl) {
+		this.fileUrl = fileUrl;
+	}
 }

@@ -67,7 +67,8 @@ public class SecurityConfig {
 					"/auth/**",
 					"/oauth/**",
 					"/oauth2/redirect/**",  // 이 경로 추가
-					"/error"               // error 경로도 추가
+					"/error",               // error 경로도 추가
+					"/api/audio/upload"	  // 개발 단계에서 인증 예외처리
 				).permitAll()
 				.anyRequest().authenticated()
 			)
