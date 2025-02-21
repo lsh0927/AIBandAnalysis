@@ -1,30 +1,25 @@
-// import React from 'react';
-
+// src/components/Dashboard.tsx
+import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext";
+import ProjectForm from './ProjectForm'; // 새로 만든 ProjectForm 컴포넌트 import
 
-
-// Dashboard.tsx에 로그아웃 버튼 추가
 const Dashboard: React.FC = () => {
   const { logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
-      // 백엔드 로그아웃 엔드포인트 호출 (선택적)
       await fetch('/api/auth/logout', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       });
-      
-      // 프론트엔드 로그아웃 처리
       logout();
       navigate('/login');
     } catch (error) {
       console.error('Logout failed:', error);
-      // 에러가 발생해도 프론트엔드 로그아웃은 수행
       logout();
       navigate('/login');
     }
@@ -42,6 +37,8 @@ const Dashboard: React.FC = () => {
         </button>
       </div>
       <p>Welcome to Band Analysis!</p>
+      {/* 여기에 프로젝트 생성 폼 추가 */}
+      <ProjectForm />
     </div>
   );
 };
