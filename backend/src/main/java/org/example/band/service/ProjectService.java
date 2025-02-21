@@ -20,8 +20,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProjectService {
 
-	private ProjectRepository projectRepository;
-	private UserRepository userRepository;
+	private final ProjectRepository projectRepository;
+	private final UserRepository userRepository;
 
 	public ProjectCreateResponse createProject(Long userId, ProjectCreateRequest request) {
 		//검증

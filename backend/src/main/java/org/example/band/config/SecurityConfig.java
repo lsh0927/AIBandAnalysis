@@ -40,6 +40,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SecurityConfig {
 
+	private final JwtAuthenticationFilter jwtAuthenticationFilter;
 	private final OAuth2UserService oAuth2UserService;
 	private final JwtTokenProvider tokenProvider;
 
@@ -67,8 +68,7 @@ public class SecurityConfig {
 					"/auth/**",
 					"/oauth/**",
 					"/oauth2/redirect/**",  // 이 경로 추가
-					"/error",               // error 경로도 추가
-					"/api/audio/upload"	  // 개발 단계에서 인증 예외처리
+					"/error"             // error 경로도 추가
 				).permitAll()
 				.anyRequest().authenticated()
 			)
@@ -83,7 +83,14 @@ public class SecurityConfig {
 					log.debug("Redirecting to: {}", redirectUrl);
 					response.sendRedirect(redirectUrl);
 				})
-			);
+			)
+			.exceptionHandling(exception ->
+			exception.authenticationEntryPoint((request, response, authException) -> {
+				response.sendError(HttpStatus.UNAUTHORIZED.value(), "Unauthorized");
+			})
+		);
+
+		http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
 		return http.build();
 	}
@@ -100,7 +107,8 @@ public class SecurityConfig {
 			"http://host.docker.internal:5173",
 			"https://kauth.kakao.com",    // 카카오 인증 서버
 			"https://accounts.kakao.com",   // 카카오 계정 서버
-			"http://band-analysis-frontend:5173"
+			"http://band-analysis-frontend:5173",
+			"http://band-analysis-frontend:8080"
 		));
 		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 		configuration.setAllowedHeaders(Arrays.asList("*"));
