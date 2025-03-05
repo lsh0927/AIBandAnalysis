@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+>>>>>>> 61ded68 (again)
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -65,4 +72,40 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+<<<<<<< HEAD
+=======
+} */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 글로벌로 정말 필요한 최소 스타일만 남기는 예시 */
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  /* 예: 전체 다크 배경을 원하면 */
+  background-color: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+/* a, button 등 공통 스타일 */
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+/* 미디어쿼리 예시 */
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: #ffffff;
+    color: #213547;
+  }
+>>>>>>> 61ded68 (again)
 }

@@ -62,11 +62,20 @@ public class SecurityConfig {
 				session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 			.authorizeHttpRequests(auth -> auth
 				.requestMatchers(
+<<<<<<< HEAD
 					"/api/auth/**",
 					"/oauth2/**",
 					"/login/oauth2/**",
 					"/auth/**",
 					"/oauth/**",
+=======
+					// "/api/**",
+					// "/api/auth/**",
+					// "/oauth2/**",
+					// "/login/oauth2/**",
+					// "/auth/**",
+					// "/oauth/**",
+>>>>>>> 61ded68 (again)
 					"/oauth2/redirect/**",  // 이 경로 추가
 					"/error"             // error 경로도 추가
 				).permitAll()

@@ -1,5 +1,7 @@
 package org.example.band.controller;
 
+import java.util.List;
+
 import org.example.band.dto.ProjectCreateRequest;
 import org.example.band.dto.ProjectCreateResponse;
 import org.example.band.dto.ProjectResponse;
@@ -24,6 +26,13 @@ public class ProjectController {
 		ProjectResponse response = projectService.findProject(id);
 		return ResponseEntity.ok(response);
 	}
+
+	@GetMapping
+	public ResponseEntity<List<ProjectResponse>> getAllProjects() {
+		List<ProjectResponse> projectList = projectService.findAllProjects();
+		return ResponseEntity.ok(projectList);
+	}
+
 
 	// POST /api/project
 	@PostMapping

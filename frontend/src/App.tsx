@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 // import { AuthProvider } from './AuthContext';
 // import Login from './Login';
@@ -27,6 +28,12 @@
 // App.tsx
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './AuthContext';
+=======
+// App.tsx
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from './AuthContext';
+import { Toaster } from 'react-hot-toast'; // 추가
+>>>>>>> 61ded68 (again)
 import Login from './Login';
 import Dashboard from './components/Dashboard';
 import OAuth2RedirectHandler from './OAuth2RedirectHandler';
@@ -38,6 +45,12 @@ const App = () => {
     <AuthProvider>
       <Router>
         <div className="min-h-screen bg-gray-50">
+<<<<<<< HEAD
+=======
+          {/* Toaster 추가 */}
+          <Toaster position="top-right" reverseOrder={false} />
+
+>>>>>>> 61ded68 (again)
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />

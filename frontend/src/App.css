@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+/* 
+
+>>>>>>> 61ded68 (again)
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -39,4 +44,17 @@
 
 .read-the-docs {
   color: #888;
+<<<<<<< HEAD
 }
+=======
+} */
+
+/* 굳이 전역에서 #root 스타일을 쓴다면, 이렇게 최소화 */
+#root {
+  max-width: 1280px; 
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* 만약 예전처럼 text-align: center가 필요 없으면 제거 */
+>>>>>>> 61ded68 (again)
