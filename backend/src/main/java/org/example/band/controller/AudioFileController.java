@@ -1,15 +1,12 @@
 package org.example.band.controller;
 
-<<<<<<< HEAD
 import org.example.band.entity.AudioFile;
-=======
 import org.example.band.dto.AudioFileResponse;
 import org.example.band.entity.AudioFile;
 import org.example.band.entity.Project;
 import org.example.band.enums.AudioFileType;
 import org.example.band.repository.AudioFileRepository;
 import org.example.band.repository.ProjectRepository;
->>>>>>> 61ded68 (again)
 import org.example.band.service.AudioFileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,16 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class AudioFileController {
 
 	private final AudioFileService audioFileService;
-<<<<<<< HEAD
-
-	// 오디오 파일 업로드 (생성)
-	@PostMapping("/upload")
-	public ResponseEntity<AudioFile> uploadAudioFile(@RequestParam("file") MultipartFile file) {
-		AudioFile savedFile = audioFileService.uploadAudioFile(file);
-		return new ResponseEntity<>(savedFile, HttpStatus.CREATED);
-	}
-
-=======
 	private final ProjectRepository projectRepository;
 
 	@PostMapping("/upload")
@@ -60,7 +47,6 @@ public class AudioFileController {
 	}
 
 
->>>>>>> 61ded68 (again)
 	// 오디오 파일 조회
 	@GetMapping("/{id}")
 	public ResponseEntity<AudioFile> getAudioFile(@PathVariable Long id) {

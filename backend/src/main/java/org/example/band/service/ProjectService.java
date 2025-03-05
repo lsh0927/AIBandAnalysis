@@ -2,11 +2,9 @@ package org.example.band.service;
 
 import static org.example.band.dto.ProjectUpdateType.*;
 
-<<<<<<< HEAD
-=======
+
 import java.util.List;
 
->>>>>>> 61ded68 (again)
 import org.example.band.dto.ProjectCreateRequest;
 import org.example.band.dto.ProjectCreateResponse;
 import org.example.band.dto.ProjectResponse;
@@ -89,8 +87,7 @@ public class ProjectService {
 			.orElseThrow(() -> new IllegalArgumentException("프로젝트를 찾을 수 없습니다."));
 		projectRepository.delete(project);
 	}
-<<<<<<< HEAD
-=======
+
 
 	public List<ProjectResponse> findAllProjects() {
 		List<Project> projects = projectRepository.findAll();
@@ -99,5 +96,4 @@ public class ProjectService {
 			.toList(); // Java 16+에서는 .collect(Collectors.toList()) 대신 .toList() 사용 가능
 	}
 
->>>>>>> 61ded68 (again)
 }

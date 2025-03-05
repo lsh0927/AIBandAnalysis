@@ -41,11 +41,7 @@ public class User extends BaseTimeEntity {
 	@Column(nullable = false)
 	private String email;
 
-<<<<<<< HEAD
-	private String name;
-=======
 	private String nickname;
->>>>>>> 61ded68 (again)
 
 	private String profileImage;
 
@@ -59,15 +55,10 @@ public class User extends BaseTimeEntity {
 	private List<Project> projects = new ArrayList<>();
 
 	@Builder
-<<<<<<< HEAD
-	public User(String email, String name, String profileImage, Provider provider, String providerId) {
-		this.email = email;
-		this.name = name;
-=======
+
 	public User(String email, String nickname, String profileImage, Provider provider, String providerId) {
 		this.email = email;
 		this.nickname = nickname;
->>>>>>> 61ded68 (again)
 		this.profileImage = profileImage;
 		this.provider = provider;
 		this.providerId = providerId;

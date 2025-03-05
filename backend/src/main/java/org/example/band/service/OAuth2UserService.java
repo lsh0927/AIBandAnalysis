@@ -61,19 +61,12 @@ public class OAuth2UserService extends DefaultOAuth2UserService {
 		return value != null ? value.toString() : null;
 	}
 
-<<<<<<< HEAD
-	private User createUser(String email, String name, String profileImage,
-		Provider provider, String providerId) {
-		return userRepository.save(User.builder()
-			.email(email)
-			.name(name)
-=======
+
 	private User createUser(String email, String nickname, String profileImage,
 		Provider provider, String providerId) {
 		return userRepository.save(User.builder()
 			.email(email)
 			.nickname(nickname)
->>>>>>> 61ded68 (again)
 			.profileImage(profileImage)
 			.provider(provider)
 			.providerId(providerId)

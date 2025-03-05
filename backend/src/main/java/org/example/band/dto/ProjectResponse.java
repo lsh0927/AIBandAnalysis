@@ -5,11 +5,6 @@ import org.example.band.entity.Project;
 public record ProjectResponse(
 	Long id,
 	String title,
-<<<<<<< HEAD
-	String genre) {
-	public static ProjectResponse from(Project project){
-		return new ProjectResponse(project.getId(), project.getTitle(), project.getGenre());
-=======
 	String genre,
 	String referenceFileName,
 	String performanceFileName,
@@ -40,6 +35,5 @@ public record ProjectResponse(
 			refUrl,
 			perfUrl
 		);
->>>>>>> 61ded68 (again)
 	}
 }
