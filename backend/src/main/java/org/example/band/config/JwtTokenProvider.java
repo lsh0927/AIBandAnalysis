@@ -37,19 +37,6 @@ public class JwtTokenProvider {
 		this.key = Keys.hmacShaKeyFor(keyBytes);
 	}
 
-	// public String generateToken(Authentication authentication) {
-	// 	UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
-	//
-	// 	Date now = new Date();
-	// 	Date expiryDate = new Date(now.getTime() + jwtExpirationMs);
-	//
-	// 	return Jwts.builder()
-	// 		.setSubject(Long.toString(userPrincipal.getId()))
-	// 		.setIssuedAt(now)
-	// 		.setExpiration(expiryDate)
-	// 		.signWith(key)  // 변경된 부분
-	// 		.compact();
-	// }
 	public String generateToken(Authentication authentication) {
 		UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
 

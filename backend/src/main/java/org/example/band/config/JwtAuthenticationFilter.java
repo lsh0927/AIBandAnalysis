@@ -27,34 +27,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	private final JwtTokenProvider tokenProvider;
 	private final UserRepository userRepository;
 
-	// @Override
-	// protected void doFilterInternal(HttpServletRequest request,
-	// 	HttpServletResponse response, FilterChain filterChain)
-	// 	throws ServletException, IOException {
-	// 	try {
-	// 		String jwt = getJwtFromRequest(request);
-	//
-	// 		if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
-	// 			Long userId = tokenProvider.getUserIdFromJWT(jwt);
-	// 			User user = userRepository.findById(userId)
-	// 				.orElseThrow(() -> new UsernameNotFoundException("User not found"));
-	//
-	// 			UserDetails userDetails = UserPrincipal.create(user);
-	// 			UsernamePasswordAuthenticationToken authentication =
-	// 				new UsernamePasswordAuthenticationToken(userDetails, null,
-	// 					userDetails.getAuthorities());
-	// 			authentication.setDetails(new WebAuthenticationDetailsSource()
-	// 				.buildDetails(request));
-	//
-	// 			SecurityContextHolder.getContext()
-	// 				.setAuthentication(authentication);
-	// 		}
-	// 	} catch (Exception ex) {
-	// 		logger.error("Could not set user authentication in security context", ex);
-	// 	}
-	//
-	// 	filterChain.doFilter(request, response);
-	// }
 	@Override
 	protected void doFilterInternal(HttpServletRequest request,
 		HttpServletResponse response, FilterChain filterChain)

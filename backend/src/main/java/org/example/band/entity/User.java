@@ -64,7 +64,6 @@ public class User extends BaseTimeEntity {
 		this.providerId = providerId;
 	}
 
-	// Project 연관관계 편의 메서드
 	public void addProject(Project project) {
 		this.projects.add(project);
 		if (project.getUser() != this) {
@@ -72,7 +71,6 @@ public class User extends BaseTimeEntity {
 		}
 	}
 
-	// Project 연관관계 편의 메서드
 	public void removeProject(Project project) {
 		this.projects.remove(project);
 		if (project.getUser() == this) {

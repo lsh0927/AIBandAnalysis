@@ -20,7 +20,6 @@ public class ProjectController {
 
 	private final ProjectService projectService;
 
-	// GET /api/project/{id} 엔드포인트 구현
 	@GetMapping("/{id}")
 	public ResponseEntity<ProjectResponse> getProject(@PathVariable Long id) {
 		ProjectResponse response = projectService.findProject(id);
@@ -33,8 +32,6 @@ public class ProjectController {
 		return ResponseEntity.ok(projectList);
 	}
 
-
-	// POST /api/project
 	@PostMapping
 	public ResponseEntity<ProjectCreateResponse> createProject(
 		@RequestParam Long userId,
@@ -43,7 +40,6 @@ public class ProjectController {
 		return new ResponseEntity<>(response, HttpStatus.CREATED);
 	}
 
-	// PUT /api/project/{id}
 	@PutMapping("/{id}")
 	public ResponseEntity<ProjectResponse> updateProject(
 		@PathVariable Long id,

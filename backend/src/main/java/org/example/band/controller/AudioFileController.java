@@ -30,7 +30,6 @@ public class AudioFileController {
 	) {
 		AudioFile savedAudio = audioFileService.uploadAudioFile(file, fileType);
 
-		// 2) 프로젝트와 연결
 		Project project = projectRepository.findById(projectId)
 			.orElseThrow(() -> new IllegalArgumentException("프로젝트가 없습니다"));
 
@@ -41,20 +40,17 @@ public class AudioFileController {
 		}
 		projectRepository.save(project);
 
-		// 3) AudioFileResponse 반환
 		AudioFileResponse responseDto = AudioFileResponse.from(savedAudio);
 		return ResponseEntity.ok(responseDto);
 	}
 
 
-	// 오디오 파일 조회
 	@GetMapping("/{id}")
 	public ResponseEntity<AudioFile> getAudioFile(@PathVariable Long id) {
 		AudioFile audioFile = audioFileService.getAudioFile(id);
 		return ResponseEntity.ok(audioFile);
 	}
 
-	// 오디오 파일 삭제
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteAudioFile(@PathVariable Long id) {
 		audioFileService.deleteAudioFile(id);

@@ -69,4 +69,13 @@ public class AudioFile extends BaseTimeEntity {
 	public void updateFileUrl(String fileUrl) {
 		this.fileUrl = fileUrl;
 	}
+
+	// AudioFile 클래스에 추가할 메서드
+	public void setStatus(FileStatus status) {
+		this.status = status;
+	}
+
+	public void setTrackInfo(Map<InstrumentType, Map<String, Object>> trackInfo) {
+		this.trackInfo = trackInfo;
+	}
 }

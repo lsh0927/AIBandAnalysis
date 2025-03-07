@@ -45,7 +45,6 @@ public class AIFeedback extends BaseTimeEntity {
 		this.type = type;
 	}
 
-	// ProblemSection 연관관계 편의 메서드
 	public void setProblemSection(ProblemSection problemSection) {
 		this.problemSection = problemSection;
 		if (problemSection != null && problemSection.getFeedback() != this) {

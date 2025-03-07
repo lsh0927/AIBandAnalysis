@@ -4,12 +4,18 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class S3FileStorageService implements FileStorageService {
 
 	private final AmazonS3 amazonS3;
+	private final RestTemplate restTemplate;
 
 	@Value("${cloud.aws.s3.bucket}")
 	private String bucketName;

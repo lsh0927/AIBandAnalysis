@@ -27,7 +27,6 @@ public class ProjectService {
 	private final UserRepository userRepository;
 
 	public ProjectCreateResponse createProject(Long userId, ProjectCreateRequest request) {
-		//검증
 		User user= userRepository.findById(userId).orElseThrow(
 			()-> new IllegalArgumentException("유저가 없습니다.")
 		);
@@ -40,7 +39,6 @@ public class ProjectService {
 
 		Project savedProject = projectRepository.save(project);
 
-		//from 메서드로 응답 구성 후 전달
 		return ProjectCreateResponse.from(savedProject);
 	}
 
@@ -56,7 +54,6 @@ public class ProjectService {
 		Project project = projectRepository.findById(projectId)
 			.orElseThrow(() -> new IllegalArgumentException("프로젝트를 찾을 수 없습니다."));
 
-		// 업데이트 타입별 처리
 		switch (request.updateType()) {
 			case BASIC_INFO:
 				if (request.title() != null) project.updateTitle(request.title());
